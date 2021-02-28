@@ -5,8 +5,7 @@
  * @license
 */
 (function( $ ) {
-
-	var lunr = require("lunr")
+var lunr = require("lunr")
 
 	// Adapted from https://github.com/pseudonym117/Levenshtein
 (function(root, factory){
@@ -183,7 +182,7 @@
 		resultsData			: false,
 		onPageLoad			: false,
 		onKeyUp				: false,
-		result_template 	: "<a id='gh-{{ref}}' class='gh-search-item' href='{{link}}'><p><h2>{{title}}</h2><h4>{{prettyPubDate}}</h4></p></a>",
+		result_template 	: "<a id='gh-{{ref}}' class='gh-search-item' href='{{link}}'><p><h2>{{title}}</h2><h4>{{pubDate}}</h4></p></a>",
 		info_template		: "<p>Number of posts found: {{amount}}</p>",
 		displaySearchInfo	: true,
 		zeroResultsInfo		: true,
@@ -271,6 +270,7 @@
 				this.field('plaintext');
 				}
 				this.field('pubDate');
+				this.field('feature_image');
 				this.field('tag');
 				idxSrc.forEach(function (arrayItem) {
 					// console.log("start indexing an item: " + arrayItem.id);
@@ -293,6 +293,7 @@
 						title 		: String(arrayItem.title),
 						description	: String(arrayItem.custom_excerpt),
 						pubDate 	: String(arrayItem.published_at),
+						feature_image 	: String(arrayItem.feature_image),
 						tag 		: category
 					}
 					if  ( me.includebodysearch ){
@@ -304,6 +305,7 @@
 						title: arrayItem.title,
 						description: arrayItem.custom_excerpt,
 						pubDate: prettyDate(parsedData.pubDate),
+						feature_image: parsedData.feature_image,
 						link: localUrl,
 						tags: tag_arr
 					};
@@ -533,6 +535,7 @@
 					}).get();
 				if (currentRefs.length === 0) {
 					for (var i=0,ilen=resultsData.length;i<ilen;i++) {
+            console.log(i,resultsData[i]);
 						results.append(this.format(this.result_template,resultsData[i]));
 					}
 					settleIDs();

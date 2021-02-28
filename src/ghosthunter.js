@@ -5,8 +5,7 @@
  * @license
 */
 (function( $ ) {
-
-	/* LUNR */
+/* LUNR */
 
 	/* LEVENSHTEIN */
 
@@ -116,6 +115,7 @@
 				this.field('plaintext');
 				}
 				this.field('pubDate');
+				this.field('feature_image');
 				this.field('tag');
 				idxSrc.forEach(function (arrayItem) {
 					// console.log("start indexing an item: " + arrayItem.id);
@@ -138,6 +138,7 @@
 						title 		: String(arrayItem.title),
 						description	: String(arrayItem.custom_excerpt),
 						pubDate 	: String(arrayItem.published_at),
+						feature_image 	: String(arrayItem.feature_image),
 						tag 		: category
 					}
 					if  ( me.includebodysearch ){
@@ -149,6 +150,7 @@
 						title: arrayItem.title,
 						description: arrayItem.custom_excerpt,
 						pubDate: prettyDate(parsedData.pubDate),
+						feature_image: parsedData.feature_image,
 						link: localUrl,
 						tags: tag_arr
 					};
