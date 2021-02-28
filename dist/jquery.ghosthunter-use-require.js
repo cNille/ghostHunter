@@ -535,7 +535,6 @@ var lunr = require("lunr")
 					}).get();
 				if (currentRefs.length === 0) {
 					for (var i=0,ilen=resultsData.length;i<ilen;i++) {
-            console.log(i,resultsData[i]);
 						results.append(this.format(this.result_template,resultsData[i]));
 					}
 					settleIDs();
